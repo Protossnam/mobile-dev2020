@@ -4,9 +4,21 @@ import '../drawer/drawer_view.dart';
 
 class DashboardView extends StatelessWidget {
   final slideImages = [
-    'assets/slider1.jpg',
-    'assets/slider2.jpg',
-    'assets/slider3.jpg'
+    {
+      'name': 'assets/slider1.jpg',
+      'title': 'Awesome image 1',
+      'subtitle': 'awesome image caption 1'
+    },
+    {
+      'name': 'assets/slider2.jpg',
+      'title': 'Awesome image 2',
+      'subtitle': 'awesome image caption 2'
+    },
+    {
+      'name': 'assets/slider3.jpg',
+      'title': 'Awesome image 3',
+      'subtitle': 'awesome image caption 3'
+    },
   ];
 
   @override
@@ -25,35 +37,36 @@ class DashboardView extends StatelessWidget {
               padding: EdgeInsets.all(16.0),
               child: Swiper(
                 itemCount: slideImages.length,
-                scale: 0.9,
                 fade: 0.0,
                 autoplay: true,
+                outer: true,
                 pagination: SwiperPagination(),
                 itemBuilder: (BuildContext context, int index) {
                   var item = slideImages[index];
-                  return Column(
-                    children: [
-                      Container(
-                        height: 200,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10.0),
-                                topRight: Radius.circular(10.0)),
-                            image: DecorationImage(
-                                image: AssetImage(item), fit: BoxFit.cover)),
-                      ),
-                      Container(
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 200,
+                          width: double.infinity,
                           decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10.0),
-                                  bottomRight: Radius.circular(10.0))),
+                            image: DecorationImage(
+                                image: AssetImage(item['name']),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                          ),
                           child: ListTile(
-                            title: Text('Awesome image'),
-                            subtitle: Text('awesome image caption'),
-                          )),
-                    ],
+                            title: Text(item['title']),
+                            subtitle: Text(item['subtitle']),
+                          ),
+                        )
+                      ],
+                    ),
                   );
                 },
               ),

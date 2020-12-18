@@ -40,7 +40,6 @@ class DashboardView extends StatelessWidget {
                 fade: 0.0,
                 autoplay: true,
                 outer: true,
-                pagination: SwiperPagination(),
                 itemBuilder: (BuildContext context, int index) {
                   var item = slideImages[index];
                   return ClipRRect(
@@ -69,6 +68,21 @@ class DashboardView extends StatelessWidget {
                     ),
                   );
                 },
+                pagination: SwiperPagination(),
+              ),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height,
+              child: GridView.count(
+                scrollDirection: Axis.vertical,
+                crossAxisCount: 3,
+                children: List.generate(50, (index) {
+                  return Container(
+                    child: Card(
+                      color: Colors.amber,
+                    ),
+                  );
+                }),
               ),
             )
           ],

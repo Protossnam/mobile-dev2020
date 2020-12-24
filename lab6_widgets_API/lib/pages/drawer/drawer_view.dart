@@ -4,6 +4,7 @@ import '../drawer/profile_view.dart';
 import '../drawer/settings_view.dart';
 import '../drawer/help_view.dart';
 import '../drawer/about_view.dart';
+import '../photo/photo_view.dart';
 import '../todo/todo_view.dart';
 
 class DrawerView extends StatelessWidget {
@@ -49,6 +50,19 @@ class DrawerView extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (_) {
                       return SettingsView();
+                    }),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.photo),
+                title: Text('Photo'),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) {
+                      return PhotoView();
                     }),
                   );
                 },

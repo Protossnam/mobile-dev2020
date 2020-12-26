@@ -1,4 +1,4 @@
-name: lab7_widgets_Database
+name: lab7widgetsDatabase
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -39,6 +39,9 @@ dependencies:
 
   # Local database
   sqflite:
+
+  firebase_core:
+  cloud_firestore:
 
 dev_dependencies:
   flutter_test:

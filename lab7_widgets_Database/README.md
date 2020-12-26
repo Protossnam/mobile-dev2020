@@ -1,4 +1,4 @@
-# lab7_widgets_Database
+# lab7widgetsDatabase
 
 A new Flutter project.
 

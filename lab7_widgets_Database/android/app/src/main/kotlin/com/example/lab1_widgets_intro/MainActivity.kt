@@ -1,4 +1,4 @@
-package com.example.lab7_widgets_Database
+package com.example.lab7widgetsDatabase
 
 import io.flutter.embedding.android.FlutterActivity
 

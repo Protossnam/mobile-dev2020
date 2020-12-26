@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../book/book_model.dart';
 import 'package:stacked/stacked.dart';
 
@@ -31,23 +33,28 @@ class BookViewModel extends BaseViewModel {
   var viewType = BookViewType.list;
 
   void init() {
-    _items = BookStore.instance.items;
-    notifyListeners();
+    FirebaseFirestore.instance.collection('Book').snapshots().listen(
+      (event) {
+        _items = event.docs.map((e) => Book.fromMap(e.data())).toList();
+        notifyListeners();
+      },
+    );
   }
 
   void addItem() {
     var timestamp = DateTime.now();
-    var item = Book(
-      timestamp.toString(),
-      'Nam',
-      timestamp.toIso8601String(),
-    );
-    _items.add(item);
-    notifyListeners();
+    var item = Book();
+    item.title = timestamp.toString();
+    item.auth = 'Nam';
+    item.save();
+    // _items.add(item);
+    // notifyListeners();
   }
 
-  void deleteItem() {
+  Future<dynamic> deleteItem() async {
     _items.remove(_currentItem);
+    var d = await currentItem.delete();
     currentItem = null;
+    return d;
   }
 }
